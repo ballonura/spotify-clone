@@ -1,6 +1,17 @@
-# spotify-clone
+# Demo
 
-## Build Setup
+```bash
+Coming soon...
+
+```
+
+### Preview
+
+Coming soon...
+
+<!-- ![Preview Slack clone](https://i.ibb.co/ZKgy1dw/slack-clone.png) -->
+
+# Build Setup
 
 ```bash
 # install dependencies
@@ -16,5 +27,3 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
