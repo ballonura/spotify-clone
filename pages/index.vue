@@ -29,9 +29,9 @@
         </div>
       </div>
       <div class="flex flex-col text-gray-1 font-bold text-sm">
-        <p class="uppercase mx-6 mb-3 tracking-widest">Playlists</p>
+        <p class="uppercase mx-6 mb-3 tracking-widest">playlistsTabs</p>
         <div
-          v-for="playlist in playlists"
+          v-for="playlist in playlistsTabs"
           :key="playlist"
           @mouseover="hoverPlaylist = playlist"
           @mouseleave="hoverPlaylist = ''"
@@ -70,7 +70,23 @@
           </div>
         </div>
       </div>
-      <div class="flex-1 overflow-y-auto px-8"></div>
+      <div class="flex-1 overflow-y-auto p-8">
+        <div v-for="playlist in playlists" :key="playlist.name" class="flex flex-col mb-8">
+          <h2 class="text-xl text-white font-bold">{{ playlist.name }}</h2>
+          <h3 v-if="playlist.description" class="text-sm text-gray-1 mt-1">{{ playlist.description }}</h3>
+          <div class="flex mt-5">
+            <div v-for="song in playlist.songs" :key="song.title" @mouseover="hoveredSong = song.title" @mouseleave="hoveredSong = ''" class="relative flex flex-col w-40 p-5 pb-4 bg-dark-1 rounded-lg mr-4 cursor-pointer">
+              <img class="mb-4" :src="song.image" />
+              <p class="text-white text-base font-bold mb-1">{{ song.title }}</p>
+              <p class="text-gray-1 text-xxs font-normal">{{ song.description }}</p>
+              <div v-if="hoveredSong === song.title" class="absolute flex justify-center items-center h-10 w-10 rounded-full bg-green-2 text-white transform hover:scale-110 duration-200" style="bottom: 1rem; right: 1rem;">
+                <!-- prettier-ignore -->
+                <svg class="fill-current w-3" x="0px" y="0px" viewBox="0 0 477.886 477.886"><g><g><path d="M476.091,231.332c-1.654-3.318-4.343-6.008-7.662-7.662L24.695,1.804C16.264-2.41,6.013,1.01,1.8,9.442 c-1.185,2.371-1.801,4.986-1.8,7.637v443.733c-0.004,9.426,7.633,17.07,17.059,17.075c2.651,0.001,5.266-0.615,7.637-1.8 L468.429,254.22C476.865,250.015,480.295,239.768,476.091,231.332z"/></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -82,9 +98,49 @@ export default {
       tabs: ["home", "search", "your library"],
       activeTab: "home",
       hoverTab: "",
-      playlists: ["create playlist", "liked songs"],
+      playlistsTabs: ["create playlist", "liked songs"],
       hoverPlaylist: "",
-      dashboardOpen: false
+      dashboardOpen: false,
+      hoveredSong: "",
+      playlists: [
+        {
+          name: "Recently played",
+          songs: [
+            {
+              image: "https://dailymix-images.scdn.co/v2/img/89084c381c355c0b6aaa09a5cae0d08a9ac424c9/1/en/default",
+              title: "Daily Mix 1",
+              description: "Feel-good dance music!"
+            },
+            {
+              image: "https://i.scdn.co/image/ab67706f00000002941b0330653e9d4d54fc12cb",
+              title: "Daily Mix 2",
+              description: "Feel-good dance music!"
+            }
+          ]
+        },
+        {
+          name: "Made for Nitzan",
+          description: "Get better recommendations the more you listen.",
+          songs: [
+            {
+              image: "https://dailymix-images.scdn.co/v2/img/89084c381c355c0b6aaa09a5cae0d08a9ac424c9/1/en/default",
+              title: "On Repeat",
+              description: "Feel-good dance music!"
+            },
+            {
+              image: "https://i.scdn.co/image/ab67706f00000002941b0330653e9d4d54fc12cb",
+              title: "Release Radar",
+              description: "Feel-good dance music!"
+            },
+            {
+              image:
+                "https://newjams-images.scdn.co/v2/discover-weekly/8J843gMIIWU81JzyAhVqggEarUi1J1dzQe04koUAi3kWumm-p_j-lzyQbql-0jXefQtNrvrmJeqYK2JSZr6kre-36eY9aap96EqRT3TSKo0mLOSykaCwZ5Kn2pIajW0tefI81Xx4xog3pwGzggTjklH4HcH4BqlZFyDSeypTKVjf3OuPpkSlEVq4yYRj6qFv7OpwTaqk9ECpWexjuxFPoQ==/MzI6MjM6OTBUODItODAtMA==/default",
+              title: "Discover Weekly",
+              description: "Feel-good dance music!"
+            }
+          ]
+        }
+      ]
     };
   }
 };
