@@ -7,7 +7,7 @@ https://objective-engelbart-77e349.netlify.app/
 
 ### Preview
 
-<!-- ![Preview Slack clone](https://i.ibb.co/qBQyKZ3/Capture.png) -->
+![Preview Slack clone](https://i.ibb.co/qBQyKZ3/Capture.png)
 
 # Build Setup
 
